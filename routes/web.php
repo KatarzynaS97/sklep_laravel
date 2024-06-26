@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\CartController;
 Route::get('/', function () {
     return view('headers/welcome');
@@ -36,43 +38,51 @@ Route::get('/products/{productType}',
 
 Route::post('/cart/add/{productType}/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 
-
-// Route::post('/cart_items/add/{productType}/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-
-
-// Route::get('/product1_sukienka/{id}', [ProductsController::class, 'show'])->name('product.show');
-
-
+Route::post('/cart_items/add/{productType}/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 
 
 //dynamiczne trasy
 Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
 
+
+
 //headers
 Route::get('/aboutus', function () {
     return view('headers/aboutus');
 });
-Route::get('/dress', function () {
-    return view('headers/kategories_dress');
-});
-Route::get('/shirt', function () {
-    return view('headers/kategories_shirt');
-});
-Route::get('/socks', function () {
-    return view('headers/kategories_socks');
-});
-Route::get('/trousers', function () {
-    return view('headers/kategories_trousers');
-});
-Route::get('/tshirt', function () {
-    return view('headers/kategories_tshirt');
-});
-Route::get('/underwear', function () {
-    return view('headers/kategories_underwear');
-});
-Route::get('/kategories_underwear', function () {
-    return view('headers/kategories_underwear');
-});
+Route::get('/dress', [CategoryController::class, 'showDresses'])->name('categories.dress');
+Route::get('/shirt', [CategoryController::class, 'showShirts'])->name('categories.shirt');
+Route::get('/socks', [CategoryController::class, 'showSocks'])->name('categories.socks');
+Route::get('/trousers', [CategoryController::class, 'showTrousers'])->name('categories.trousers');
+Route::get('/tshirt', [CategoryController::class, 'showTshirts'])->name('categories.tshirt');
+Route::get('/underwear', [CategoryController::class, 'showUnderwear'])->name('categories.underwear');
+Route::get('/kategories_underwear', [CategoryController::class, 'showUnderwear'])->name('categories.underwear');
+
+// Route::get('/dress', function () {
+//     return view('headers/kategories_dress');
+// });
+// Route::get('/shirt', function () {
+//     return view('headers/kategories_shirt');
+// });
+// Route::get('/socks', function () {
+//     return view('headers/kategories_socks');
+// });
+// Route::get('/trousers', function () {
+//     return view('headers/kategories_trousers');
+// });
+// Route::get('/tshirt', function () {
+//     return view('headers/kategories_tshirt');
+// });
+// Route::get('/underwear', function () {
+//     return view('headers/kategories_underwear');
+// });
+// Route::get('/kategories_underwear', function () {
+//     return view('headers/kategories_underwear');
+// });
+
+
+
+
 //main dress
 
 Route::get('/product1_sukienka', function () {
@@ -249,40 +259,4 @@ Route::get('/size_tables', function () {
 Route::get('/statute', function () {
     return view('footer/statute');
 });
-
-// Route::get('/product1/1', [ProductsController::class, 'index'])->name('main.product1_sukienka');
-// Route::get('/product1/1', [ProductsController::class, 'showProduct'])->name('main.product1_sukienka');
-// Route::get('/product2_sukienka/2', [ProductsController::class, 'showProduct2'])->name('main.product2_sukienka');
-// Route::get('/product3_sukienka/3', [ProductsController::class, 'showProduct3'])->name('main.product3_sukienka');
-// Route::get('/product4_sukienka/4', [ProductsController::class, 'showProduct4'])->name('main.product4_sukienka');
-// Route::get('/product5_sukienka/5', [ProductsController::class, 'showProduct5'])->name('main.product5_sukienka');
-// Route::get('/product6_sukienka/6', [ProductsController::class, 'showProduct6'])->name('main.product6_sukienka');
-// Route::get('/product7_sukienka/7', [ProductsController::class, 'showProduct7'])->name('main.product7_sukienka');
-// Route::get('/product8_sukienka/8', [ProductsController::class, 'showProduct8'])->name('main.product8_sukienka');
-
-// //trousers
-// Route::get('/product9_spodnie/1', [ProductsController::class, 'showProduct9'])->name('main.product9_spodnie/1');
-// Route::get('/product10_spodnie/2', [ProductsController::class, 'showProduct10'])->name('main.product10_spodnie/2');
-// Route::get('/product11_spodnie/3', [ProductsController::class, 'showProduct11'])->name('main.product11_spodnie/3');
-// Route::get('/product12_spodnie/4', [ProductsController::class, 'showProduct12'])->name('main.product12_spodnie/4');
-// Route::get('/product13_spodnie/5', [ProductsController::class, 'showProduct13'])->name('main.product13_spodnie/5');
-// Route::get('/product14_spodnie/6', [ProductsController::class, 'showProduct14'])->name('main.product14_spodnie/6');
-// Route::get('/product15_spodnie/7', [ProductsController::class, 'showProduct15'])->name('main.product15_spodnie/7');
-// Route::get('/product16_spodnie/8', [ProductsController::class, 'showProduct16'])->name('main.product16_spodnie/8');
-
-
-// //tshirt
-// Route::get('/product17_tshirt/1', [ProductsController::class, 'showProduct17'])->name('/product17_tshirt/1');
-// Route::get('/product18_tshirt/2', [ProductsController::class, 'showProduct18'])->name('/product18_tshirt/2');
-// Route::get('/product19_tshirt/3', [ProductsController::class, 'showProduct19'])->name('/product19_tshirt/3');
-// Route::get('/product20_tshirt/4', [ProductsController::class, 'showProduct20'])->name('/product20_tshirt/3');
-// Route::get('/product21_tshirt/5', [ProductsController::class, 'showProduct21'])->name('/product21_tshirt/5');
-// Route::get('/product22_tshirt/6', [ProductsController::class, 'showProduct22'])->name('/product22_tshirt/6');
-// Route::get('/product23_tshirt/7', [ProductsController::class, 'showProduct23'])->name('/product23_tshirt/7');
-// Route::get('/product24_tshirt/8', [ProductsController::class, 'showProduct24'])->name('/product24_tshirt/8');
-
-
-
-
-
-Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
+// Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');

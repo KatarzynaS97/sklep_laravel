@@ -67,7 +67,7 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
                 <br>
-                <button type="submit" class="btn btn-primary">Dodaj do koszyka</button>
+                <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
             </form>
             
             <div class="d-block m-3">
