@@ -149,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                    <a href="{{url('/cart')}}" class="text-decoration-none"><button class="btn btn btn-koszyk_zakupowy " type="submit">
+                    <a href="{{url('cart/view')}}" class="text-decoration-none"><button class="btn btn btn-koszyk_zakupowy " type="submit">
                         <i class="bi-cart-fill me-1"></i>
                             Koszyk
                        

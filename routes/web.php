@@ -26,6 +26,11 @@ require __DIR__.'/auth.php';
 
 
 //cart
+
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+
+
+
 Route::get('/cart', function () {
     return view('layout/cart');
 });
@@ -50,7 +55,7 @@ Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showP
 Route::get('/aboutus', function () {
     return view('headers/aboutus');
 });
-Route::get('/dress', [CategoryController::class, 'showDresses'])->name('categories.dress');
+Route::get('/dress', [CategoryController::class, 'showDresses'])->name('categories}.dress');
 Route::get('/shirt', [CategoryController::class, 'showShirts'])->name('categories.shirt');
 Route::get('/socks', [CategoryController::class, 'showSocks'])->name('categories.socks');
 Route::get('/trousers', [CategoryController::class, 'showTrousers'])->name('categories.trousers');
@@ -259,4 +264,4 @@ Route::get('/size_tables', function () {
 Route::get('/statute', function () {
     return view('footer/statute');
 });
-// Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
+Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
