@@ -1,0 +1,9 @@
+@extends('layout.app')
+
+@section('content')
+<p class="opis_onas">Moda damska i elegancka odzież damska od polskiego producenta. Tworzymy kolekcje, by sprawiać przyjemność kobietom w każdym wieku i rozmiarze. Szyjemy od rozmiaru 36 do 50, a naszym atutem jest odzież plus size. Stawiamy na ponadczasową klasykę, elegancję i minimalizm z wyrafinowanym akcentem, ponieważ uważamy, że jakość jest ważniejsza niż ilość. W naszych kolekcjach znajdziesz przede wszystkim szeroką ofertę odzieży damskiej – wizytowe sukienki i dzianinowe sukienki na co dzień. Ponadto mamy kolekcję biznesową – żakiety damskie, marynarki, spódnice i spodnie. Słyniemy z wełnianych okryć. Hitowe modele vito vergelis to płaszcze z alpaki, kurtki wełniane, ramoneski i kurtki skórzane. W ostatnich latach poszerzyliśmy ofertę o wygodne dresy damskie oraz hitowe elastyczne spodnie damskie będące konkurencją dla zachodnich marek odzieżowych.</p><br>
+
+   <h4 class="opis_onas"> Elegancka odzież damska dla stylowej kobiety od polskiego producenta </h4><br>
+   
+  <p class="opis_onas">  Jesteśmy producentem eleganckiej odzieży damskiej wyróżniającym się wysoką jakością. Istniejemy na rynku już tak długo, ponieważ od początku przyświeca nam jeden cel: zadowolenie naszych Klientek. Możemy to zapewnić poprzez dobre konstrukcje, modne fasony i wysokogatunkowe materiały. Zachęcamy do zapoznania się z naszą urozmaiconą ofertą. W naszym sklepie znajdziesz wełniany płaszcz, kurtki pikowane lub z ekoskóry, sukienki wizytowe i do pracy oraz bluzki damskie i koszule, które zestawione ze spodniami tworzą zgrany duet.    </p>
+@endsection
