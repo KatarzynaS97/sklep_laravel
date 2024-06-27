@@ -49,6 +49,7 @@ Route::post('/cart_items/add/{productType}/{id}', [CartController::class, 'addTo
 //dynamiczne trasy
 Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
 
+Route::get('/product_sukienka/{id}', 'App\Http\Controllers\ProductController@showDress')->name('dress.show');
 
 
 //headers
@@ -116,11 +117,11 @@ Route::get('/product8_sukienka', function () {
 });
 
 //trousers 
-Route::get('/product9_spodnie', function () {
-    return view('main/product9_spodnie');
+Route::get('/product1_spodnie', function () {
+    return view('main/product1_spodnie');
 });
-Route::get('/product10_spodnie', function () {
-    return view('main/product10_spodnie');
+Route::get('/product2_spodnie', function () {
+    return view('main/product2_spodnie');
 });
 Route::get('/product11_spodnie', function () {
     return view('main/product11_spodnie');
@@ -265,3 +266,7 @@ Route::get('/statute', function () {
     return view('footer/statute');
 });
 Route::get('/{product_type}_{category}/{id}', [ProductsController::class, 'showProduct'])->name('main.product');
+
+
+//dashboar 
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->middleware(['auth'])->name('dashboard');

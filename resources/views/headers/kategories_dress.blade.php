@@ -36,7 +36,7 @@
                             <!-- Product image-->
                             <a href="{{ url('product' . $product->id . '_sukienka/' . $product->id) }}">
                                 <img class="card-img-top" src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
-                            </a>
+                            </a>    
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

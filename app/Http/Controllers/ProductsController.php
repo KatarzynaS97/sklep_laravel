@@ -14,7 +14,43 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+    public function showDress($id)
+    {
+        $dress = Dress::findOrFail($id); // Pobierz produkt na podstawie ID (przy założeniu, że masz model Dress i tabelę dresses w bazie danych)
+    
+        return view('products.product' . $dress->id . '_sukienka', compact('dress')); // Przekieruj do odpowiedniego widoku
+    }
 
+    public function showTrousers($id)
+    {
+        $trousers = Trousers::findOrFail($id); 
+    
+        return view('products.product' . $trousers->id . '_spodnie', compact('trousers')); 
+    }
+    public function showTshirt($id)
+    {
+        $tshirt = Tshirt::findOrFail($id); 
+    
+        return view('products.product' . $tshirt->id . '_tshirt', compact('tshirt')); 
+    }
+    public function showUnderwear($id)
+    {
+        $underwear = Underwear::findOrFail($id); 
+    
+        return view('products.product' . $underwear->id . '_bielizna', compact('underwear')); 
+    }
+    public function showSocks($id)
+    {
+        $socks = Socks::findOrFail($id); 
+    
+        return view('products.product' . $socks->id . '_socks', compact('socks')); 
+    }
+    public function showShirt($id)
+    {
+        $shirt = Shirt::findOrFail($id); 
+    
+        return view('products.product' . $shirt->id . '_shirt', compact('shirt')); 
+    }
     // public function show($id)
     // {
     //     $product = Dress::find($id);

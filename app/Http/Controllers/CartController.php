@@ -117,7 +117,8 @@ class CartController extends Controller
                     unset($cart[$cartItemKey]);
                     session()->put('cart', $cart);
                 }
-            }
+                
+            } 
     
             return redirect()->route('cart.view')->with('message', 'Produkt usunięty z koszyka!');
         }
@@ -162,7 +163,10 @@ class CartController extends Controller
             $cartItems = Cart_items::where('email', $user->email)->get();
         } else {
             $cartItems = session()->get('cart', []);
-        }
+            return redirect('login');
+        } 
+            
+        
 
         return view('layout/cart', compact('cartItems'));
     }

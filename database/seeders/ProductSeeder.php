@@ -167,13 +167,13 @@ class ProductSeeder extends Seeder
             DB::table('tshirt')->insert([
                 'name'=> 'Koszulka zielona',
                 'price'=>99.99,
-                'image'=>'../img/bluzka7.png',
+                'image'=>'../img/bluzka8.png',
                  'description'=>'Koszulka zielona z wycięciem  '
             ]);
             DB::table('tshirt')->insert([
                 'name'=> ' Bluzka w paski',
                 'price'=>139.99,
-                'image'=>'../img/bluzka8.png',
+                'image'=>'../img/bluzka7.png',
                  'description'=>'Koszulka w paski z naszywką'
             ]);
             //shirt

@@ -29,7 +29,7 @@
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <a href="{{ url('product'. $product->id.'_underwear/' ) }}">
+                    <a href="{{ url('product'. $product->id.'_bielizna/'  . $product->id) }}">
                         <img class="card-img-top" src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
                     </a>
                     <!-- Product details-->
