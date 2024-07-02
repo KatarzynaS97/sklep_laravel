@@ -56,13 +56,11 @@
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                 <label class="btn btn-outline-dark" for="btnradio3">L</label>
             </div>
-            <form action="{{ route('cart.add', ['productType' => 'trousers', 'id' => $product->id]) }}" method="POST">
-                @csrf
-                <input type="hidden" name="product_type" value="dress">
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <form action="{{ route('cart.add', ['productType' =>$product->product_type, 'id' => $product->id]) }}" method="POST">                @csrf
+                <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
-                <br>
-                <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
+            <br>
+            <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
             </form>
             <div class="d-block m-3">
                 <p>Opis produktu </p>

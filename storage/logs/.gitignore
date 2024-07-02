@@ -1,2 +1,10 @@
 *
 !.gitignore
+\Log::info('Dodawanie produktu do koszyka: ', [
+    'user_id' => $user->id,
+    'product_type' => $productType,
+    'product_id' => $id,
+    'price' => $product->price,
+    'quantity' => $request->quantity,
+    'name' => $product->name,
+]);

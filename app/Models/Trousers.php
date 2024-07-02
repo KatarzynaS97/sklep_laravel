@@ -10,5 +10,5 @@ class Trousers extends Model
     
     use HasFactory;
     protected $table = 'trousers';
-    protected $fillable = ['name','price','image','description'];
+    protected $fillable = ['name','price','image','description','product_type'];
 }

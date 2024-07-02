@@ -6,10 +6,11 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\CartController;
-Route::get('/', function () {
-    return view('headers/welcome');
-});
-
+// Route::get('/', function () {
+//     return view('headers/welcome');
+    
+// });
+Route::get('/', [ProductsController::class, 'index_welcome'])->name('welcome');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -22,9 +23,28 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/products/{productType}', [ProductsController::class, 'index'])->name('products.index');
+
+Route::get('/products/dress/{id}', [ProductsController::class, 'showDress'])->name('products.showDress');
+Route::get('/products/trousers/{id}', [ProductsController::class, 'showTrousers'])->name('products.showTrousers');
+Route::get('/products/tshirt/{id}', [ProductsController::class, 'showTshirt'])->name('products.showTshirt');
+Route::get('/products/underwear/{id}', [ProductsController::class, 'showUnderwear'])->name('products.showUnderwear');
+Route::get('/products/socks/{id}', [ProductsController::class, 'showSocks'])->name('products.showSocks');
+Route::get('/products/shirt/{id}', [ProductsController::class, 'showShirt'])->name('products.showShirt');
 
 
+//dodawanie do koszyka
+Route::post('/cart/add/{productType}/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+//wyswietlanie koszyka
+Route::get('/cart/view', [CartController::class, 'viewCart'])->name('cart.view');
+// aktualizacja koszyka po dodaniu 
+Route::post('/cart/update/{productType}/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+//usu
+Route::delete('/cart/remove/{productType}/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
+// Route::get('/product_sukienka/{id}', [ProductsController::class, 'showDress'])->name('product_sukienka.show');
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //cart
 
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');

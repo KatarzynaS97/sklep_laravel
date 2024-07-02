@@ -60,6 +60,12 @@
             <div>
                 <a class="btn btn_koszyk" href="#" role="button">Dodaj do koszyka</a>
             </div>
+            <form action="{{ route('cart.add', ['productType' =>$product->product_type, 'id' => $product->id]) }}" method="POST">                @csrf
+                <input type="hidden" name="name" value="{{ $product->name }}">
+                <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
+            <br>
+            <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
+            </form>
             <div class="d-block m-3">
                 <p>Opis produktu </p>
                 <p> {{$product->description}}</p>

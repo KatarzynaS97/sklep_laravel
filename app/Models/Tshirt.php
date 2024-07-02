@@ -9,5 +9,5 @@ class Tshirt extends Model
 {
     use HasFactory;
     protected $table = 'tshirt';
-    protected $fillable = ['name','price','image','description'];
+    protected $fillable = ['name','price','image','description','product_type'];
 }

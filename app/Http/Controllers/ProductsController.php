@@ -16,9 +16,8 @@ class ProductsController extends Controller
 {
     public function showDress($id)
     {
-        $dress = Dress::findOrFail($id); // Pobierz produkt na podstawie ID (przy założeniu, że masz model Dress i tabelę dresses w bazie danych)
-    
-        return view('products.product' . $dress->id . '_sukienka', compact('dress')); // Przekieruj do odpowiedniego widoku
+        $dress = Dress::findOrFail($id); 
+        return view('products.product' . $dress->id . '_sukienka', compact('dress'));
     }
 
     public function showTrousers($id)
@@ -97,6 +96,16 @@ class ProductsController extends Controller
                 'productType' => $productType
             ]);
         }
+        public function index_welcome()
+        {
+            $dress = Dress::first();
+            $trousers = Trousers::first();
+            $socks = Socks::first();
+            $tshirt = Tshirt::first();
+            $shirt = Shirt::first();
+            $underwear = Underwear::first();
+                 return view('headers.welcome', compact('dress', 'trousers','socks', 'tshirt','shirt','underwear'));
+        }
     
         private function getProductModel($productType)
         {
@@ -109,6 +118,10 @@ class ProductsController extends Controller
                     return Trousers::class;
                 case 'socks':
                     return Socks::class;
+                case 'shirt':
+                    return Shirt::class;
+                case 'underwear':
+                    return Underwear::class;
                 default:
                     abort(404, 'Invalid product type');
             }
@@ -132,5 +145,7 @@ class ProductsController extends Controller
     
         //     return view($viewName, ['product' => $product]);
         // }
+
+       
     
 }

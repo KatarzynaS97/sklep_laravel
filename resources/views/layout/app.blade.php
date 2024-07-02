@@ -16,6 +16,10 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('img/ikona1.png') }}" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Twoje CSS -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     {{-- script --}}
@@ -125,7 +129,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                    <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')" class="text-decoration-none text-dark dropdown-item">
+                                    <x-dropdown-link  :href="route('cart.view')" class="text-decoration-none text-dark dropdown-item">
                                     {{ __('Mój Profil') }}
                                     </x-dropdown-link>
                                         <form method="POST" action="{{ route('logout') }}">

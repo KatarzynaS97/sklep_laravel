@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('price');
             $table->string('image');
             $table->longText('description');
+            $table->string('product_type');
+
 
         }); 
     }

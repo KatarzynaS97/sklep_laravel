@@ -47,13 +47,13 @@
             </div>
             <h3>Rozmiar uniwersalny</h3>
            
-            <form action="{{ route('cart.add', ['productType' => 'socks', 'id' => $product->id]) }}" method="POST">
+            <form action="{{ route('cart.add', ['productType' =>$product->product_type, 'id' => $product->id]) }}" method="POST">
+
                 @csrf
-                <input type="hidden" name="product_type" value="dress">
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
-                <br>
-                <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
+            <br>
+            <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
             </form>
             <div class="d-block m-3">
                 <p>Opis produktu </p>
