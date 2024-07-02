@@ -11035,3 +11035,17 @@ font-family:Georgia, 'Times New Roman', Times, serif;
   background-color: #DE7B8D;
   color: white;
 }
+.margin_zdj_slajd1{
+  margin-left: 350px;
+}
+.margin_zdj_slaj2{
+  margin-left: 250px;
+
+}
+.margin_zdj_slaj3{
+  margin-left: 250px;
+
+}
+.container_slajd{
+  width: 100%;
+}

@@ -39,8 +39,9 @@ Route::post('/cart/add/{productType}/{id}', [CartController::class, 'addToCart']
 Route::get('/cart/view', [CartController::class, 'viewCart'])->name('cart.view');
 // aktualizacja koszyka po dodaniu 
 Route::post('/cart/update/{productType}/{id}', [CartController::class, 'updateCart'])->name('cart.update');
-//usu
+//usuń
 Route::delete('/cart/remove/{productType}/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
 
 // Route::get('/product_sukienka/{id}', [ProductsController::class, 'showDress'])->name('product_sukienka.show');
 

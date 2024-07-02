@@ -6,7 +6,32 @@
         {{ session()->get('message') }}
     </div>
 @endif
+@php
 
+    $deliveryPrice = 0; // Domyślnie ustawiamy wartość na 0
+
+    if (isset($_POST['delivery_option'])) {
+        $selected_option = $_POST['delivery_option'];
+        
+        switch ($selected_option) {
+            case '1':
+                $deliveryPrice = 25; // DPD - 25 zł
+                break;
+            case '2':
+                $deliveryPrice = 20; // DHL - 20 zł
+                break;
+            case '3':
+                $deliveryPrice = 15; // InPost - 15 zł
+                break;
+            case '4':
+                $deliveryPrice = 12; // Poczta Polska - 12 zł
+                break;
+            default:
+                $deliveryPrice = 0; // Domyślnie, jeśli żadna opcja nie zostanie wybrana
+                break;
+        }
+    }
+@endphp
 <section class="h-100 h-custom" style="background-color: #DE7B8D;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -18,7 +43,7 @@
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0">Twój Koszyk</h1>
-                                        <h6 class="mb-0 text-muted">{{ count($cartItems) }} items</h6>
+                                        <h6 class="mb-0 text-muted">{{ count($cartItems) }}Ilość Produktów</h6>
                                     </div>
                                     <hr class="my-4">
 
@@ -66,29 +91,30 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">Items {{ count($cartItems) }}</h5>
+                                        <h5 class="text-uppercase">Ilosc Produktów {{ count($cartItems) }}</h5>
                                         @php
                                             $totalPrice = array_sum(array_column($cartItems->toArray(), 'price'));
                                         @endphp
-                                        {{-- <h5>{{ $totalPrice }} zł</h5> --}}
+                                        <h5>{{ $totalPrice }} zł</h5>
                                     </div>
 
                                     <h5 class="text-uppercase mb-3">Dostawa</h5>
 
-                                    <div class="mb-4 pb-2">
-                                        <select data-mdb-select-init>
-                                            <option value="1">DPD - 25zł</option>
-                                            <option value="2">DHL - 20zł</option>
-                                            <option value="3">InPost - 15zł</option>
-                                            <option value="4">Poczta Polska - 12zł</option>
-                                        </select>
-                                    </div>
-
+                                    
+                                        <div class="mb-4 pb-2">
+                                            <select name="delivery_option" data-mdb-select-init onchange="this.form.submit()">
+                                                <option value="1">DPD - 25 zł</option>
+                                                <option value="2">DHL - 20 zł</option>
+                                                <option value="3">InPost - 15 zł</option>
+                                                <option value="4">Poczta Polska - 12 zł</option>
+                                            </select>
+                                        </div>
+                                    </form>
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">SUMA</h5>
-                                        {{-- <h5>{{ $totalPrice + $deliveryPrice }} zł</h5> --}}
+                                        <h5>{{ $totalPrice + $deliveryPrice }} zł</h5>
                                     </div>
 
                                     <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn_koszyk">Kup</button>

@@ -18,7 +18,7 @@
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0">Twój Koszyk</h1>
-                                        <h6 class="mb-0 text-muted">{{ count($cartItems) }} items</h6>
+                                        <h6 class="mb-0 text-muted">{{ count($cartItems) }} Ilość Produktów</h6>
                                     </div>
                                     <hr class="my-4">
 

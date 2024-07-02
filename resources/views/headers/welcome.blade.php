@@ -11,7 +11,7 @@
     <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
       <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
     </symbol>
-    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBoxgit ="0 0 16 16">
       <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
     </symbol>
   </svg>
@@ -23,10 +23,31 @@
 </div>
     @endif
   <!-- Header-->
-  <header class="bg-dark py-5">
+  <header class="bg-dark py-5 container_slajd ">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <img src="glowne.png" alt="zdjecie sukienek " class="zdjecie-glowne">
+        <div class="text-center text-white ">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner margin_zdj_slajd1">
+                  <div class="carousel-item active">
+                    <img src="img/sukienka2.png" class="d-block w-50" alt="...">
+                  </div>
+                  <div class="carousel-item margin_zdj_slajd2">
+                    <img src="img/koszula1.png" class="d-block w-50" alt="...">
+                  </div>
+                  <div class="carousel-item margin_zdj_slajd3">
+                    <img src="img/spodnie2.png" class="d-block w-50" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Cofnij</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Dalej</span>
+                </button>
+              </div>
+            {{-- <img src="glowne.png" alt="zdjecie sukienek " class="zdjecie-glowne"> --}}
         </div>
     </div>
     </header>
@@ -200,81 +221,7 @@
                 </div>
             </div>
             @endif
-            {{-- <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="img/spodnie3.png" alt="spodnie" />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">spodnie czarne</h5>
-                            <!-- Product price-->
-                         
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn_koszyk fs-6 mt-auto" href="#">Dodaj do
-                                koszyka</a></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-
-                    <!-- Product image-->
-                    <img class="card-img-top" src="img/bielizna4.png"
-                        alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">biustonosz biały</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through"></span>
-                            
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn_koszyk fs-6 mt-auto" href="#">Dodaj do
-                                koszyka</a></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="img/bielizna1.png"
-                        alt="vielizna" />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Bielizna damska</h5>
-                          
-                        
-                            <!-- Product price-->
-                       
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn_koszyk fs-6  mt-auto" href="#">Dodaj do
-                                koszyka</a></div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+         
     </div>
 </section>
 @endsection
