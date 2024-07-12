@@ -2,3 +2,239 @@
     background-color: #DE7B8D;
     color: white;
   }
+
+  .btn_koszyk{
+    background-color: #DE7B8D;
+    border-radius: 50px;
+    font-size: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+  }
+
+  .zdjecie-glowne{
+    width: 110%;
+    height: 50vw;
+    margin: -80px;
+  }
+  .footer_all{
+    clear:both;
+  }
+  .container_footer{
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  justify-content: left;
+  }
+  .container_footer2{
+    width:100%;
+    float:left;
+    text-decoration: none;
+    text-align: left;
+    justify-content: left;
+    font-size: 20px;
+  }
+  .footer_informacje,
+  .footer_o_nas,
+  .footer_zamowenia{
+   padding-left: 180px;
+  
+  }
+  .linki_footer{
+    text-decoration: none;
+    color:#fff;
+  }
+  .linki_footer:hover{
+    color: #000;
+  }
+  .opis_onas{
+    margin-top: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+  
+  .contact{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: space-around;
+    text-align: justify;
+    margin: 20px;
+  
+   
+  
+  }
+  .pole_info{
+    width: 300px;
+    height: 400px;
+    border: 3px solid black;
+    border-radius: 6px;
+  
+    margin-top: 50px;
+    
+    
+    
+  }
+  .contact_ikona{
+    margin-left: 80px;
+    margin-top: 20px;
+  
+  }
+  
+  .naglowek_contact{
+    margin-top: 30px;
+    margin-left: 60px;
+  
+  }
+  .pole_info_shopping_prices {
+    width: 100%;
+    height: 400px;
+    border: 3px solid black;
+    border-radius: 6px;
+  
+    margin-top: 50px;
+  }
+  .container_rejestracja
+  {
+    width: 100%;
+    height: 500px;
+    border: 3px solid black;
+    border-radius: 6px;
+    background-color: rgb(252,243,207);
+    margin-top:0;
+  }
+  .container_zwroty{
+    width: 100%;
+    height: 400px;
+    border: 3px solid black;
+    border-radius: 6px;
+    background-color: rgb(252,243,207);
+    margin-top: -80px;
+  }
+  .zdjecie_dostawa{
+    margin-left: 600px;
+    padding-bottom: 50px;
+  }
+  .search{
+    margin-right: 255px;
+  }
+  
+  .produkt1{
+    float:left;
+    margin-left: 30px;
+    margin-right: 10px;
+    
+  }
+  
+  
+  .description_product{
+   
+  
+  margin-left: 50px;
+  }
+  
+  
+  .opis_h1_p{
+    margin-left: 390px;
+  }
+  .btn_logowanie{
+    background-color: #DE7B8D;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: black !important;
+    
+  }
+  .dane_rejestracja{
+    border-radius:15px;
+  border:  #DE7B8D solid 2px;
+  padding: 10px;
+  }
+  .btn_koszyk{
+    background-color: #DE7B8D;
+    border-radius: 50px;
+    font-size: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  .li_color_product{
+  color:#DE7B8D
+  } 
+  .li_color{
+  list-style:none ;
+  }
+  .li_color:before{
+    content: "\2022"; 
+    color: #DE7B8D; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em;
+  }
+  .div_cookies{
+    background-color: rgb(252,243,207);
+    margin-top:-50px;
+    margin-bottom: -45px;
+  }
+  .container_statute{
+    width: 100%;
+    height: 1000px;
+    border: 3px solid black;
+    border-radius: 6px;
+    background-color: rgb(252,243,207);
+    
+  
+  }
+  .info_skw{
+    margin-left: 190px;
+    margin-top: -150px;
+  }
+  .container_product{
+    width: 100%;
+    height: 1200px;
+    border: 3px solid black;
+    border-radius: 6px;
+  
+  }
+  .info_rzw{
+    margin-top: -8px;
+    margin-left: -10px;
+   
+  } 
+  .tytul_produkt{
+    margin-top: -100px;
+    
+  }
+  .form_register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  }
+  .btn-koszyk_zakupowy:hover{
+    background-color: #DE7B8D;
+    color: white;
+  }
+  .margin_zdj_slajd1{
+    margin-left: 350px;
+  }
+  .margin_zdj_slaj2{
+    margin-left: 250px;
+  
+  }
+  .margin_zdj_slaj3{
+    margin-left: 250px;
+  
+  }
+  .container_slajd{
+    width: 100%;
+  }

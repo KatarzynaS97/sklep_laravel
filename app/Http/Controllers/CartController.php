@@ -1,162 +1,109 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use App\Models\Dress;
-use App\Models\Tshirt;
-use App\Models\Trousers;
-use App\Models\Socks;
-use App\Models\Shirt;
-use App\Models\Cart_items;
-use Illuminate\Support\Facades\Session;
-use App\Models\Underwear;
+namespace App\Http\Controllers;
+
+use App\Models\CartItem;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request, $productType, $id)
-    {$validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'quantity' => 'required|integer|min:1',
-        // inne reguły walidacji
-    ]);
-        
-        $productModel = $this->getProductModel($productType);
-        $product = $productModel::find($id);
+    public function index()
+    {
+        $cartItems = CartItem::all();
+        $totalPrice = $this->calculateTotalPrice($cartItems);
+        $deliveryPrice = session()->get('deliveryPrice', 0);
 
-        if (!$product) {
-            return redirect()->back()->withErrors(['error' => 'Produkt nie znaleziony']);
-        }
-
-        if (Auth::check()) {
-            $user = auth()->user();
-
-            $cart = Cart_items::where('user_id', $user->id)
-                ->where('product_type', $productType)
-                ->where('product_id', $id)
-                ->first();
-
-            if ($cart) {
-                $cart->quantity += $request->quantity;
-            } else {
-                $cart = new Cart_items();
-                $cart->user_id = $user->id;
-                $cart->product_type = $productType;
-                $cart->product_title = $product->name;
-                $cart->email = $user->email;
-                $cart->product_id = $id;
-                $cart->price = $product->price;
-                $cart->quantity = $request->quantity;
-                $cart->name = $product->name;
-            }
-            if (!$cart->save()) {
-            Log::error('Nie udało się zapisać do bazy danych: ', $cart->toArray());
-                return redirect()->back()->withErrors(['error' => 'Nie udało się dodać do koszyka']);
-            }
-        } else {
-            $cart = session()->get('cart', []);
-            $cartItemKey = $productType . '_' . $id;
-
-            if (isset($cart[$cartItemKey])) {
-                $cart[$cartItemKey]['quantity'] += $request->quantity;
-            } else {
-                $cart[$cartItemKey] = [
-                    'name' => $product->name,
-                    'price' => $product->price,
-                    'quantity' => $request->quantity,
-                    'product_type' => $productType,
-                    'product_id' => $id,
-                ];
-            }
-
-            session()->put('cart', $cart);
-        }
-
-        return redirect()->back()->with('message', 'Produkt dodany do koszyka!');
+        return view('cart.view', compact('cartItems', 'totalPrice', 'deliveryPrice'));
     }
 
-    public function updateCart(Request $request, $productType, $id)
-    {
-        if (Auth::id()) {
-            $user = auth()->user();
-            $cartItem = Cart_items::where('user_id', $user->id)
-                ->where('product_type', $productType)
-                ->where('product_id', $id)
-                ->first();
-
-            if ($cartItem) {
-                $cartItem->quantity = $request->quantity;
-                $cartItem->save();
-            }
-        } else {
-            $cart = session()->get('cart', []);
-            $cartItemKey = $productType . '_' . $id;
-
-            if (isset($cart[$cartItemKey])) {
-                $cart[$cartItemKey]['quantity'] = $request->quantity;
-                session()->put('cart', $cart);
-            }
-        }
-
-        return redirect()->route('cart.view')->with('message', 'Koszyk zaktualizowany!');
+    public function add(Request $request, $category_id, $id)
+    { 
+         if (!auth()->check()) {
+        return redirect()->route('login')->with('error', 'Aby dodać produkt do koszyka, musisz być zalogowany.');
     }
 
-    public function removeFromCart($productType, $id)
-    {
-        if (Auth::id()) {
-            $user = auth()->user();
-            Cart_items::where('user_id', $user->id)
-                ->where('product_type', $productType)
-                ->where('product_id', $id)
-                ->delete();
-        } else {
-            $cart = session()->get('cart', []);
-            $cartItemKey = $productType . '_' . $id;
+    $product = Product::findOrFail($id);
+    $category = Category::findOrFail($category_id);
+    $user = auth()->user();
 
-            if (isset($cart[$cartItemKey])) {
-                unset($cart[$cartItemKey]);
-                session()->put('cart', $cart);
-            }
-        }
-
-        return redirect()->route('cart.view')->with('message', 'Produkt usunięty z koszyka!');
+    if (!$user->id) {
+        return redirect()->route('login')->with('error', 'Błąd w autoryzacji');
     }
 
-    protected function getProductModel($productType)
-    {
-        switch ($productType) {
-            case 'dress':
-                return Dress::class;
-            case 'tshirt':
-                return Tshirt::class;
-            case 'trousers':
-                return Trousers::class;
-            case 'shirt':
-                return Shirt::class;
-            case 'underwear':
-                return Underwear::class;
-            case 'socks':
-                return Socks::class;
-            default:
-                abort(404, 'Invalid product type');
-        }
+
+        $cartItem = CartItem::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'category_id' => $category->id,
+            'product_type' => $category->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $request->quantity,
+        ]);
+    
+        return redirect()->route('cart.index')->with('message', 'Produkt został dodany do koszyka.');
     }
 
-    public function viewCart()
+    public function update(Request $request, CartItem $cartItem)
     {
-        $user = auth()->user();
+        $cartItem->update([
+            'quantity' => $request->quantity,
+        ]);
 
-        if ($user) {
-            $cartItems = Cart_items::where('user_id', $user->id)->get();
-        } else {
-            $cart = session()->get('cart', []);
-            $cartItems = [];
+        return redirect()->back()->with('message', 'Ilość produktu została zaktualizowana.');
+    }
 
-            foreach ($cart as $item) {
-                $cartItems[] = (object) $item;
+    public function destroy(CartItem $cartItem)
+    {
+        $cartItem->delete();
+
+        return redirect()->back()->with('message', 'Produkt został usunięty z koszyka.');
+    }
+
+    public function updateDelivery(Request $request)
+    {
+        $cartItemId = $request->input('cart_item_id');
+        $selectedOption = $request->input('delivery_option');
+    
+        $cartItem = CartItem::find($cartItemId);
+    
+        if ($cartItem) {
+            $cartItem->update([
+                'delivery_option' => $selectedOption,
+            ]);
+    
+            $deliveryPrice = 0;
+            switch ($selectedOption) {
+                case 1:
+                    $deliveryPrice = 25;
+                    break;
+                case 2:
+                    $deliveryPrice = 20;
+                    break;
+                case 3:
+                    $deliveryPrice = 15;
+                    break;
+                case 4:
+                    $deliveryPrice = 12;
+                    break;
+                default:
+                    $deliveryPrice = 0;
+                    break;
             }
+    
+            session(['deliveryPrice' => $deliveryPrice]);
+    
+            return redirect()->back()->with('message', 'Metoda dostawy została zaktualizowana.');
         }
-
-        return view('cart.view', compact('cartItems'));
+    
+        return redirect()->back()->withErrors(['error' => 'Nie można znaleźć pozycji w koszyku.']);
+    }
+    protected function calculateTotalPrice($cartItem)
+    {
+        return $cartItem->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
     }
 }

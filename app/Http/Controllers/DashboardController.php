@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Cart_items;
 
 class DashboardController extends Controller
 {
-    /**
-     * Show the dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
-        $user = Auth::user();
-        $cartItems = Cart_items::where('email', $user->email)->get();
+        $cartItems = CartItem::all(); // Pobranie wszystkich elementów koszyka
+        $totalPrice = $this->calculateTotalPrice($cartItems); // Obliczenie całkowitej ceny koszyka
+        $deliveryPrice = session()->get('deliveryPrice', 0); // Pobranie ceny dostawy z sesji
 
-        return view('dashboard', compact('cartItems'));
+        // Obliczenie sumy koszyka i ceny dostawy
+        $totalAmount = $totalPrice + $deliveryPrice;
+
+        return view('dashboard', compact('cartItems', 'totalAmount'));
+    }
+
+    protected function calculateTotalPrice($cartItems)
+    {
+        return $cartItems->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
     }
 }
+

@@ -12,8 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();//twozy automatycznie w bazie tabele createt_at i updated_at 
+          
+                $table->id();
+                $table->string('name');
+                $table->decimal('price', 8, 2);
+                $table->string('image_path');
+                $table->text('description')->nullable();
+                $table->string('slug')->unique();
+                // $table->unsignedBigInteger('category_id');
+                // $table->foreignId('category_id')->constrained()->onDelete('cascade');
+                $table->timestamps();
+
+                // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

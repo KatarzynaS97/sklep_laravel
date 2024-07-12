@@ -1,50 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
 
-    use App\Models\Shirt;
-    use App\Models\Socks; 
-    use App\Models\Trousers; 
-    use App\Models\Tshirt; 
-    use App\Models\Underwear; 
-use App\Models\Dress;
+use App\Models\Category;
 use Illuminate\Http\Request;
+
 
 class CategoryController extends Controller
 {
-    public function showDresses()
+    public function index()
     {
-        $products = Dress::all();
-        return view('headers/kategories_dress', compact('products'));
+        $categories = Category::all();
+
+        return view('headers.welcome', compact('categories'));
     }
 
-    public function showShirts()
+    public function show($slug)
     {
-        $products = Shirt::all();
-        return view('headers/kategories_shirt', compact('products'));
-    }
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $products = Product::where('category_id', $category->id)->get();
 
-    public function showSocks()
-    {
-        $products = Socks::all();
-        return view('headers/kategories_socks', compact('products'));
-    }
-
-    public function showTrousers()
-    {
-        $products = Trousers::all();
-        return view('headers/kategories_trousers', compact('products'));
-    }
-
-    public function showTshirts()
-    {
-        $products = Tshirt::all();
-        return view('headers/kategories_tshirt', compact('products'));
-    }
-
-    public function showUnderwear()
-    {
-        $products = Underwear::all();
-        return view('headers/kategories_underwear', compact('products'));
+        return view('categories.show', compact('category', 'products'));
     }
 }
