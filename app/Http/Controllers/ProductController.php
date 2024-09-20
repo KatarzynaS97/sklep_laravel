@@ -43,7 +43,11 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id); 
 
-        return view('products.show', compact('product'));
+        // Upewnij się, że produkt ma kategorię
+        $category = $product->category;
+    
+        // Zwróć widok 'products.show' z produktem i kategorią
+        return view('products.show', compact('product', 'category'));
     }
    
 

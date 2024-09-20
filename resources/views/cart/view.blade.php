@@ -78,20 +78,23 @@
                                     <h5 class="text-uppercase mb-3">Dostawa</h5>
                                     <form method="POST" action="{{ route('cart.updateDelivery') }}">
                                         @csrf
-                                        <input type="hidden" name="cart_item_id" value="{{ $cartItem->id }}">
                                         <select name="delivery_option" onchange="this.form.submit()">
-                                            <option value="1" {{ $cartItem->delivery_option == 1 ? 'selected' : '' }}>DPD - 25 zł</option>
-                                            <option value="2" {{ $cartItem->delivery_option == 2 ? 'selected' : '' }}>DHL - 20 zł</option>
-                                            <option value="3" {{ $cartItem->delivery_option == 3 ? 'selected' : '' }}>InPost - 15 zł</option>
-                                            <option value="4" {{ $cartItem->delivery_option == 4 ? 'selected' : '' }}>Poczta Polska - 12 zł</option>
+                                            @foreach ($deliveryOptions as $option)
+                                            <option value="{{ $option->id }}" {{ session('selectedDeliveryOption') == $option->id ? 'selected' : '' }}>
+                                                {{ $option->name }} - {{ $option->price }} zł
+                                            </option>
+                                            @endforeach
                                         </select>
                                     </form>
+                                    
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">SUMA</h5>
-                                        <h5>{{ $totalPrice + session('deliveryPrice', 0) }} zł</h5>
+                                        <!-- Całkowita suma produktów + koszt dostawy -->
+                                        <h5>{{ $totalWithDelivery }} zł</h5>
                                     </div>
+                                    
 
                                     <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn_koszyk">Kup</button>
                                 </div>

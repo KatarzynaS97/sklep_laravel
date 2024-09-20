@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CartItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\CartItem;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $cartItems = CartItem::all(); // Pobranie wszystkich elementów koszyka
-        $totalPrice = $this->calculateTotalPrice($cartItems); // Obliczenie całkowitej ceny koszyka
-        $deliveryPrice = session()->get('deliveryPrice', 0); // Pobranie ceny dostawy z sesji
-
-        // Obliczenie sumy koszyka i ceny dostawy
+        $cartItems = CartItem::all(); 
+        $totalPrice = $this->calculateTotalPrice($cartItems);
+        $deliveryPrice = session()->get('deliveryPrice', 0); 
         $totalAmount = $totalPrice + $deliveryPrice;
+        $isAdmin = false; // Użytkownik nie jest adminem
 
-        return view('dashboard', compact('cartItems', 'totalAmount'));
+        return view('user.dashboard', compact('cartItems', 'totalAmount', 'isAdmin'));
     }
-
     protected function calculateTotalPrice($cartItems)
     {
         return $cartItems->sum(function ($item) {
@@ -26,4 +26,3 @@ class DashboardController extends Controller
         });
     }
 }
-

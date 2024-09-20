@@ -45,8 +45,8 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <form action="{{ route('cart.add', ['productType' => $product->product_type, 'id' => $product->id]) }}"
-                            method="POST">
+                        <form action="{{ route('cart.add', ['category_id' => $product->category_id, 'id' => $product->id]) }}" method="POST">
+
                             @csrf
                             <input type="hidden" name="name" value="{{ $product->name }}">
                             <input type="number" value="1" min="1" class="form-control" style="width:100px"

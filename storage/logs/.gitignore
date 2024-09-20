@@ -1,8 +1,6 @@
-*
-!.gitignore
-\Log::info('Dodawanie produktu do koszyka: ', [
+Log::info('Dodawanie produktu do koszyka: ', [
     'user_id' => $user->id,
-    'product_type' => $productType,
+    'category_id' => $category_id, // zamienione z product_type na category_id
     'product_id' => $id,
     'price' => $product->price,
     'quantity' => $request->quantity,

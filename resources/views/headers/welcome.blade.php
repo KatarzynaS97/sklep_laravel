@@ -66,11 +66,7 @@
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
                                         <a class="btn btn_koszyk fs-6 mt-auto" href="{{ route('product.show', $product->id) }}">Zobacz</a>
-                                        {{-- <form action="{{ route('cart.add', ['category_id' => $product->category_id, 'id' => $product->id]) }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button type="submit" class="btn btn-primary mt-2">Dodaj do koszyka</button>
-                                        </form> --}}
+                                     
                                     </div>
                                 </div>
                             </div>

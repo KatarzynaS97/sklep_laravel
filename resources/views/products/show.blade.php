@@ -14,9 +14,8 @@
                     </div>
                     <p class="lead">{{ $product->description }}</p>
                     <div class="d-flex">
-                        <form action="{{ route('cart.add', ['category_id' => $product->category_id, 'id' => $product->id]) }}" method="POST">
-                        @csrf
-                            <input type="hidden" name="name" value="{{ $product->name }}">
+                        <form action="{{ route('cart.add', ['productType' => $product->category->id, 'id' => $product->id]) }}" method="POST">
+                            @csrf
                             <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
                             <br>
                             <button type="submit" class="btn btn_koszyk">Dodaj do koszyka</button>
